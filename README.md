@@ -67,6 +67,11 @@ Make sure you have the following installed:
 mvn clean package
 ```
 
+?. run tests:
+```bash
+mvn test
+```
+
 2. Run the app:
 ```bash
 mvn exec:java 
@@ -81,23 +86,24 @@ mvn exec:java
 
 ## 4. Running the Project with Docker
 
-1. Build the project:
-```bash
-mvn clean package
-
-```
-2. Build the Docker image:
+1. Build the Docker image:
 ```bash
 docker build -t current-weather-app .
 ```
 
-3. Run the container:
+2. Run the container:
 ```bash
 docker run --rm -v ${PWD}/Excel:/app/Excel current-weather-app
 ```
 
 3. The results will be saved into the `Excel` folder.
 
+
+?. run tests:
+```bash
+mvn clean package
+mvn test
+```
 ---
 
 ## Output Example

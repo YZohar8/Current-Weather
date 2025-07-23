@@ -119,3 +119,22 @@ Shanghai : 29.9°C
 Generated Excel file (`Excel/weather_results.xlsx`):
 - Sheet: **Weather Results**
 - Columns: **City**, **Temperature (°C)**
+
+
+## Implementation Details
+
+### Rate-limiting
+To avoid overwhelming the weather API and prevent being blocked, I implemented a simple rate-limiting mechanism that controls the number of API requests sent within a specific time frame. This ensures compliance with the API usage policies and maintains stable performance.
+
+### Concurrency
+The application uses concurrency to speed up fetching weather data for multiple cities. By leveraging Java's concurrency utilities (such as `ExecutorService`), multiple API calls run in parallel without blocking the main thread, which improves response time and resource utilization.
+
+### Retry Logic
+In case of transient failures like network timeouts or temporary API errors, a retry mechanism is in place. It retries failed API requests a limited number of times with a short delay between attempts. This increases robustness and reduces the chance of failing due to temporary issues.
+
+### Potential Improvements with More Time
+- **Advanced Rate Limiting:** Implement adaptive rate-limiting that dynamically adjusts based on API response headers or error codes.
+- **Better Error Handling:** Introduce more granular error handling with specific responses for different HTTP status codes.
+- **Asynchronous Processing:** Switch to fully asynchronous API calls using reactive programming frameworks to further improve scalability.
+- **Configuration:** Externalize retry parameters and rate limits to configuration files for easier tuning without code changes.
+- **Logging Enhancements:** Improve logging detail and integrate with centralized logging systems for easier monitoring and troubleshooting.
